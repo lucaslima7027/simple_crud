@@ -19,7 +19,7 @@ def update_product(request, product_id):
         product.description = request.POST['description']
         product.save()
         return redirect('list_products')
-    return render(request, 'product/update_product.html', {'product': product})
+    return render(request, 'products/update_product.html', {'product': product})
 
 
 def delete_product(request, product_id):
