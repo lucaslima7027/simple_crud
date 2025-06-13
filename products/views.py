@@ -1,11 +1,14 @@
 from django.shortcuts import redirect, render
-from .models import Product
+from .models import Product, Stock
 
 def create_product(request):
     if request.method == 'POST':
         product = request.POST['product']
         description = request.POST['description']
-        Product.objects.create(name=product, description=description)
+        quantity = request.POST['quantity']
+        price = request.POST['price']
+        product = Product.objects.create(name=product, description=description)
+        Stock.objects.create(product_id=product,quantity=quantity, price=price)
     return render(request, 'products/create_product.html')
 
 def list_products(request):
